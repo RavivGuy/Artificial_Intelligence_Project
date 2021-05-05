@@ -28,11 +28,11 @@ class State:
             order_copy = deepcopy(self.order)
             zero_index = self._get_zero_index()
             if action == Action.LEFT:
-                order_copy[zero_index] = order_copy[zero_index - 1]
-                order_copy[zero_index - 1] = 0
-            if action == Action.RIGHT:
                 order_copy[zero_index] = order_copy[zero_index + 1]
                 order_copy[zero_index + 1] = 0
+            if action == Action.RIGHT:
+                order_copy[zero_index] = order_copy[zero_index - 1]
+                order_copy[zero_index - 1] = 0
             if action == Action.UP:
                 order_copy[zero_index] = order_copy[zero_index + self.side_length]
                 order_copy[zero_index + self.side_length] = 0
@@ -54,9 +54,9 @@ class State:
             valid_action.append(Action.DOWN)
         if row_index != self.side_length -1:
             valid_action.append(Action.UP)
-        if column_index != 0:
-            valid_action.append(Action.LEFT)
         if column_index != self.side_length - 1:
+            valid_action.append(Action.LEFT)
+        if column_index != 0:
             valid_action.append(Action.RIGHT)
 
         return valid_action

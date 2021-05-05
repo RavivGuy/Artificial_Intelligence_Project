@@ -6,3 +6,15 @@ class Action(Enum):
     RIGHT = 1
     UP = 2
     DOWN = 3
+
+
+names_dict = {
+    Action.LEFT: 'L',
+    Action.RIGHT: 'R',
+    Action.UP: 'U',
+    Action.DOWN: 'D'
+}
+
+
+def get_short_name(action: Action):
+    return names_dict.get(action)
