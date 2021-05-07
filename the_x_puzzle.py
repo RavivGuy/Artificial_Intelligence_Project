@@ -1,9 +1,12 @@
+import datetime
 from typing import List
 
 import action_enum
+from a_star import AStar
 from algo_enum import AlgoEnum
 from base_global_search import BaseGlobalSearch
 from bfs import BFS
+from ids import IDS
 
 
 def convert_order_to_nums(order_string: str) -> List[int]:
@@ -12,7 +15,7 @@ def convert_order_to_nums(order_string: str) -> List[int]:
 
 
 def get_input_from_file():
-    with open("input.txt", "r") as input_file:
+    with open("med_input.txt", "r") as input_file:
         lines = input_file.readlines()
 
         algo_enum = AlgoEnum(int(lines[0].strip()))
@@ -25,11 +28,11 @@ def get_input_from_file():
 def get_solve_graph(algo_enum: AlgoEnum):
     solve_graph: BaseGlobalSearch = None
     if algo_enum == AlgoEnum.IDS:
-        pass
+        solve_graph = IDS(order_int_list, N)
     elif algo_enum == AlgoEnum.BFS:
         solve_graph = BFS(order_int_list, N)
     elif algo_enum == AlgoEnum.A_STAR:
-        pass
+        solve_graph = AStar(order_int_list, N)
     return solve_graph
 
 
@@ -41,6 +44,9 @@ def write_output(moves):
 
 if __name__ == "__main__":
     algo, N, order_int_list = get_input_from_file()
+    start_time = datetime.datetime.now()
     solution_graph = get_solve_graph(algo)
+    end_time = datetime.datetime.now()
+    print(end_time - start_time)
     solve_moves = solution_graph.get_solve_moves()
     write_output(solve_moves)

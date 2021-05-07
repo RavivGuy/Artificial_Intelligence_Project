@@ -7,6 +7,8 @@ class Action(Enum):
     UP = 2
     DOWN = 3
 
+    def __gt__(self, other):
+        return self.value > other.value
 
 names_dict = {
     Action.LEFT: 'L',

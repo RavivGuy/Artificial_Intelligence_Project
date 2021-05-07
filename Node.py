@@ -13,3 +13,10 @@ class Node:
     def __eq__(self, other):
         return isinstance(other,
                           Node) and self.state == other.state and self.action == other.action
+
+    def __cmp__(self, other):
+        return __cmp__((self.action, self.state), (other.action, other.state))
+
+    def __gt__(self, other):
+        return (self.action, self.state) > (other.action, other.state)
+
