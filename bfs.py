@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 from Node import Node
@@ -19,6 +20,7 @@ class BFS(BaseGlobalSearch):
 
             state = node.state
             state_neighbors = state.get_neighbors()
+            random.shuffle(state_neighbors)
 
             for neighbor in state_neighbors:
                 neighbor_node = Node(neighbor[1], node, neighbor[0])

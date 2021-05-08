@@ -1,5 +1,5 @@
 import math
-from typing import List, Tuple
+from typing import List
 
 from Node import Node
 from base_global_search import BaseGlobalSearch
@@ -11,9 +11,12 @@ class IDS(BaseGlobalSearch):
         super().__init__(basic_order, side_length)
 
     def get_solve_node(self) -> Node:
-        max_depth = math.factorial(math.fabs(self.side_length))
+        # max depth is factorial of side_length^2
+        # (the number of ways to order side_length^2 in a row)
+        max_depth = math.factorial(math.pow(self.side_length, 2))
 
         for i in range(max_depth):
+            # every dfs_with_limit need to empty the close list
             self.close_list: List[Node] = []
             sol_node = self.dfs_with_limit(self.initial_node, i)
             if sol_node:
