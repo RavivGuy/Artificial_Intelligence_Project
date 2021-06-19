@@ -1,4 +1,5 @@
 import math
+from datetime import datetime
 from typing import List
 
 from Node import Node
@@ -15,7 +16,8 @@ class BaseGlobalSearch(ABC):
     def __init__(self, basic_order: List[int], side_length: int):
         self.side_length: int = side_length
         self.initial_state: State = State(basic_order, side_length)
-        self.initial_node: Node = Node(self.initial_state, None, None)
+        create_time = datetime.timestamp(datetime.now())
+        self.initial_node: Node = Node(self.initial_state, None, None, create_time)
         order: List[int] = list(range(1, int(math.pow(side_length, 2))))
         order.append(0)
         self.goal_state: State = State(order, side_length)

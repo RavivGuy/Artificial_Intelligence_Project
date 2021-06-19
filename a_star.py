@@ -1,6 +1,7 @@
-import random
-from typing import List, Tuple
 import heapq
+from datetime import datetime
+from typing import List, Tuple
+
 from Node import Node
 from base_global_search import BaseGlobalSearch
 
@@ -26,10 +27,10 @@ class AStar(BaseGlobalSearch):
 
             state = node.state
             state_neighbors = state.get_neighbors()
-            random.shuffle(state_neighbors)
 
+            create_time = datetime.timestamp(datetime.now())
             for neighbor in state_neighbors:
-                neighbor_node = Node(neighbor[1], node, neighbor[0])
+                neighbor_node = Node(neighbor[1], node, neighbor[0], create_time)
                 if neighbor_node not in self.close_list:
                     manhattan_dist = neighbor_node.state.get_manhattan_dist()  # manhattan_dist from neighbor to goal state
                     path_len = popped_item[1] + 1  # the path we already travel

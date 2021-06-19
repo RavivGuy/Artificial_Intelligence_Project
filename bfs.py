@@ -1,4 +1,4 @@
-import random
+from datetime import datetime
 from typing import List
 
 from Node import Node
@@ -14,16 +14,16 @@ class BFS(BaseGlobalSearch):
     def get_solve_node(self) -> Node:
         self.open_list.append(self.initial_node)
         while self.open_list:
-            node = self.open_list.pop()
+            node = self.open_list.pop(0)
             if node.state == self.goal_state:
                 return node
 
             state = node.state
             state_neighbors = state.get_neighbors()
-            random.shuffle(state_neighbors)
 
+            create_time = datetime.timestamp(datetime.now())
             for neighbor in state_neighbors:
-                neighbor_node = Node(neighbor[1], node, neighbor[0])
+                neighbor_node = Node(neighbor[1], node, neighbor[0], create_time)
                 if neighbor_node not in self.close_list:
                     self.close_list.append(neighbor_node)
                     self.open_list.append(neighbor_node)

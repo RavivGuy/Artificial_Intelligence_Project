@@ -1,7 +1,6 @@
 import math
-import random
 from copy import deepcopy
-from typing import List, Tuple
+from typing import List
 
 from action_enum import Action
 
@@ -25,6 +24,7 @@ class State:
         valid_actions = self._get_valid_actions(row_index, column_index)
 
         neighbors = [(valid_action, self._get_new_state_for_action(valid_action)) for valid_action in valid_actions]
+        neighbors.sort(key=lambda tup: tup[0])
         return neighbors
 
     """
@@ -114,6 +114,6 @@ class State:
     def _get_goal_indexes(self, number: int):
         if number == 0:
             return self.side_length - 1, self.side_length - 1
-        row_index = int(number - 1 / self.side_length)
-        column_index = number - 1 % self.side_length
+        row_index = int((number - 1) / self.side_length)
+        column_index = (number - 1) % self.side_length
         return row_index, column_index

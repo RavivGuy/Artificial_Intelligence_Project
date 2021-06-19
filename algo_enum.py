@@ -5,6 +5,6 @@ class AlgoEnum(Enum):
     """
     enum of potential algorithms
     """
-    IDS = 0
-    BFS = 1
-    A_STAR = 2
+    IDS = 1
+    BFS = 2
+    A_STAR = 3

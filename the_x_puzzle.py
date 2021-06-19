@@ -55,8 +55,7 @@ def write_output(moves, file_name: str):
 the main method
 """
 if __name__ == "__main__":
-    algo, N, order_int_list = get_input_from_file("med_input.txt")
+    algo, N, order_int_list = get_input_from_file("input.txt")
     solution_graph = get_solve_graph(algo)
-    end_time = datetime.datetime.now()
     solve_moves = solution_graph.get_solve_moves()
     write_output(solve_moves, "output.txt")

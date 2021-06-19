@@ -5,10 +5,10 @@ class Action(Enum):
     """
     enum of available moves
     """
-    LEFT = 0
-    RIGHT = 1
-    UP = 2
-    DOWN = 3
+    UP = 0
+    DOWN = 1
+    LEFT = 2
+    RIGHT = 3
 
     def __gt__(self, other):
         return self.value > other.value

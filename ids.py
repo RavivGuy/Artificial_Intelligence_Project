@@ -1,4 +1,5 @@
 import math
+from datetime import datetime
 from typing import List
 
 from Node import Node
@@ -33,8 +34,9 @@ class IDS(BaseGlobalSearch):
         state = curr_node.state
         state_neighbors = state.get_neighbors()
 
+        create_time = datetime.timestamp(datetime.now())
         for neighbor in state_neighbors:
-            neighbor_node = Node(neighbor[1], curr_node, neighbor[0])
+            neighbor_node = Node(neighbor[1], curr_node, neighbor[0], create_time)
             if neighbor_node not in self.close_list:
                 sol_node = self.dfs_with_limit(neighbor_node, limit-1)
                 if sol_node:
